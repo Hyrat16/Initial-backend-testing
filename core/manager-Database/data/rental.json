@@ -1,0 +1,14 @@
+[
+  {
+    "deliverymenIdentifier": "fe279f78-d6b6-4ef8-9d89-ad7777f14fda",
+    "motocyrcleIdentier": "763fc201-30f7-4820-809f-e30af1b928f3",
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-08",
+    "endForecastDate": "2024-01-08",
+    "identifier": "0968b90f-fc43-4b51-8bb5-9699cf159efc",
+    "plan": 7,
+    "dailyValue": "R$ 30",
+    "returnDate": "2024-01-01",
+    "fine": "R$ 22.5"
+  }
+]
