@@ -1,3 +1,11 @@
+# README - Desafio Mottu Backend
+
+[Português](#português) | [English](#english)
+
+---
+
+## Português
+
 ## Aplicação a ser desenvolvida
 
 Seu objetivo é criar uma aplicação para gerenciar aluguel de motos e entregadores. Quando um entregador estiver registrado e com uma locação ativa poderá também efetuar entregas de pedidos disponíveis na plataforma.
@@ -41,3 +49,50 @@ https://app.swaggerhub.com/apis-docs/Mottu/mottu_desafio_backend/1.0.0
     - Para plano de 7 dias o valor da multa é de 20% sobre o valor das diárias não efetivadas.
     - Para plano de 15 dias o valor da multa é de 40% sobre o valor das diárias não efetivadas.
   - Quando a data informada for superior a data prevista do término, será cobrado um valor adicional de R$50,00 por diária adicional.
+
+---
+
+## English
+
+## Application to be developed
+
+Your goal is to create an application to manage motorcycle rentals and delivery drivers. When a delivery driver is registered and has an active rental, they can also perform deliveries for orders available on the platform.
+
+We will run an integration test to validate the use cases. Therefore, your application must strictly follow the REST API specifications of our Swagger: request, response, and status code. Ensure that the JSON attributes match the Swagger documentation below.
+
+Reference Swagger:
+https://app.swaggerhub.com/apis-docs/Mottu/mottu_desafio_backend/1.0.0
+
+### Use Cases
+
+- As an admin user, I want to register a new motorcycle.
+  - Mandatory motorcycle data: Identifier, Year, Model, and License Plate.
+  - The license plate is unique and cannot be repeated.
+    - Create a consumer to notify when the motorcycle year is "2024".
+    - Once the message is received, it should be stored in the database for future reference.
+- As an admin user, I want to query existing motorcycles on the platform and filter by license plate.
+- As an admin user, I want to modify a motorcycle, changing only its license plate if it was incorrectly registered.
+- As an admin user, I want to remove a motorcycle that was incorrectly registered, provided there are no rental records.
+- As a delivery driver, I want to register on the platform to rent motorcycles.
+  - Delivery driver data: (identifier, name, CNPJ, date of birth, driver's license number, license type, license image).
+  - Valid license types are A, B, or both A+B.
+  - The CNPJ is unique and cannot be repeated.
+  - The driver's license number is unique and cannot be repeated.
+- As a delivery driver, I want to upload a photo of my license to update my registration.
+  - The file format must be png or bmp.
+  - The photo cannot be stored in the database; you may use a storage service (local disk, Amazon S3, MinIO, or others).
+- As a delivery driver, I want to rent a motorcycle for a period.
+  - Available rental plans:
+    - 7 days at a cost of R$30.00 per day
+    - 15 days at a cost of R$28.00 per day
+    - 30 days at a cost of R$22.00 per day
+    - 45 days at a cost of R$20.00 per day
+    - 50 days at a cost of R$18.00 per day
+  - The rental must have a start date, an end date, and an expected end date.
+  - The rental start date must be the first day after the creation date.
+  - Only drivers with a category A license can perform a rental.
+- As a delivery driver, I want to inform the return date and check the total rental amount.
+  - When the return date is before the expected end date, the daily rates plus an additional fine will be charged:
+    - For the 7-day plan, the fine is 20% of the value of the remaining daily rates.
+    - For the 15-day plan, the fine is 40% of the value of the remaining daily rates.
+  - When the return date is after the expected end date, an additional amount of R$50.00 per extra day will be charged.
