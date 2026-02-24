@@ -13,7 +13,7 @@ import {
   isEqual,
 } from "date-fns";
 import { laterDate, previousDate } from "../dateFunctions/laterDate";
-import { da } from "zod/locales";
+//import { da } from "zod/locales";
 
 //import { int } from "zod";
 
@@ -48,7 +48,7 @@ export class RentalService {
 
       if (checkingRentedMotorcycle) {
         throw new UserAlreadyRegistered(
-          "Moto já esta sendo alugada no momento",
+          "Dados invalidos: Moto já esta sendo alugada no momento",
         );
       }
 
@@ -62,7 +62,9 @@ export class RentalService {
       const locatedById = findAll.find((d) => d.identifier === identifier);
 
       if (!locatedById) {
-        throw new UserAlreadyRegistered("Entregador nao cadastrado no sistema");
+        throw new UserAlreadyRegistered(
+          "Dados invalidos: Entregador nao cadastrado no sistema",
+        );
       }
 
       //console.log(locatedById);
@@ -74,7 +76,7 @@ export class RentalService {
     const chekingTypeCNH = async (cnh: string) => {
       if (cnh !== "A" && cnh !== "AB" && cnh !== "a" && cnh !== "ab") {
         throw new RequestBadlyFormatted(
-          "A carteira registrada nao é permita para aluguel de motocicletas",
+          "Dados invalidos: A carteira registrada nao é permita para aluguel de motocicletas",
         );
       }
     };
@@ -124,7 +126,7 @@ export class RentalService {
       //console.log(date1, date2);
       if (ComparingValidatingDeliveryDate != 0) {
         throw new RequestBadlyFormatted(
-          "Data de entrega nao corresponde a um dia valido",
+          "Dados invalidos: Data de entrega nao corresponde a um dia valido",
         );
       }
     };
@@ -217,7 +219,9 @@ export class RentalService {
     const parsedDate = parseISO(uptadeDate);
 
     if (!isValid(parsedDate)) {
-      throw new RequestBadlyFormatted("O formato da data é inválido.");
+      throw new RequestBadlyFormatted(
+        "Dados invalidos: O formato da data é inválido.",
+      );
     }
 
     const returnedByIdentifier = await this.rentalByID(identifier);
@@ -235,7 +239,7 @@ export class RentalService {
 
     if (isEqual(new Date(uptadeDate), dateOriginal) == true) {
       throw new RequestBadlyFormatted(
-        "A data fornecida é igual a original de retorno.",
+        "Dados invalidos: A data fornecida é igual a original de retorno.",
       );
     }
 
@@ -246,7 +250,7 @@ export class RentalService {
 
     if (returnDateIsGreaterThanTheStartDate === -1) {
       throw new RequestBadlyFormatted(
-        "A data fornecida é menor que a data primaria de aluguel",
+        "Dados invalidos: A data fornecida é inferior a data primaria de aluguel",
       );
     }
 
@@ -260,7 +264,9 @@ export class RentalService {
       );
 
       if (!newObjectRentalPreviousDate) {
-        throw new RequestBadlyFormatted("Plano inválido ou não encontrado");
+        throw new RequestBadlyFormatted(
+          "Dados invalidos: Plano inválido ou não encontrado",
+        );
       }
       const SendingDataToTheRepository = await repositoryRental.uptadeDate(
         newObjectRentalPreviousDate,
@@ -277,7 +283,9 @@ export class RentalService {
       );
 
       if (!newObjectRentalLaterDate) {
-        throw new RequestBadlyFormatted("Plano inválido ou não encontrado");
+        throw new RequestBadlyFormatted(
+          " Dados invalidos: Plano inválido ou não encontrado",
+        );
       }
       const SendingDataToTheRepository = await repositoryRental.uptadeDate(
         newObjectRentalLaterDate,

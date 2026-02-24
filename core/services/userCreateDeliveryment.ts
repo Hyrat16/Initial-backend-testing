@@ -12,11 +12,13 @@ export class UserService {
 
     const cnpjDuplicate = deliverymen.some((del) => del.cnpj === user.cnpj);
     const cnhDuplicate = deliverymen.some(
-      (del) => del.number_cnh == user.number_cnh
+      (del) => del.number_cnh == user.number_cnh,
     );
 
     if (cnhDuplicate || cnpjDuplicate) {
-      throw new UserAlreadyRegistered("CNH ou CNPJ já esta cadastrado");
+      throw new UserAlreadyRegistered(
+        "Dados invalidos: CNH ou CNPJ já esta cadastrado",
+      );
     }
 
     const identifier = uuidv4();
@@ -26,7 +28,7 @@ export class UserService {
     };
 
     const UserNew = await createNewDeliverymenRepositorys.create(
-      dataWithIdentifier as DeliverymenOutput
+      dataWithIdentifier as DeliverymenOutput,
     );
 
     const deliveryResponseClient =

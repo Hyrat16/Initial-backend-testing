@@ -28,7 +28,7 @@ export class UserMotorcycle {
 
     if (!createListAllMotorcycle || createListAllMotorcycle.length === 0) {
       throw new RequestBadlyFormatted(
-        "Lista de motos nao disponivel. Verique novamente seu pedido",
+        "Dados invalidos: Lista de motos nao disponivel.",
       );
     }
 
@@ -43,7 +43,9 @@ export class UserMotorcycle {
     );
 
     if (validationPlate) {
-      throw new UserAlreadyRegistered("A moto em questao já esta cadastrada");
+      throw new UserAlreadyRegistered(
+        "Dados invalidos: A moto em questao já esta cadastrada",
+      );
     }
 
     const identifier = uuidv4();
@@ -68,7 +70,7 @@ export class UserMotorcycle {
     const IdLocali = await repositoryMotorcycle.findById(identifier);
 
     if (!IdLocali) {
-      throw new RequestBadlyFormatted("Moto não encontrada");
+      throw new RequestBadlyFormatted("Dados invalidos: Moto não encontrada");
     }
 
     return IdLocali;
@@ -79,7 +81,7 @@ export class UserMotorcycle {
     //console.log(originalMotorcycle);
 
     if (!originalMotorcycle) {
-      throw new NotFoundError("Motocicleta nao encontrada");
+      throw new NotFoundError("Dados invalidos: Motocicleta nao encontrada");
     }
 
     //console.log(originalMotorcycle.plate, itemUptade);
@@ -89,7 +91,9 @@ export class UserMotorcycle {
     //console.log(isMotorcycleIdentical);
 
     if (isMotorcycleIdentical) {
-      throw new UserAlreadyRegistered("A Placa em questao já esta cadastrada");
+      throw new UserAlreadyRegistered(
+        " Dados invalidos: A Placa em questao já esta cadastrada",
+      );
     }
 
     const motorcycleLocated = await repositoryMotorcycle.Uptade(
@@ -104,7 +108,7 @@ export class UserMotorcycle {
     const motorcycleDelete = await repositoryMotorcycle.deleteById(id);
 
     if (motorcycleDelete.length === 0) {
-      throw new RequestBadlyFormatted("Moto não encontrada");
+      throw new RequestBadlyFormatted("Dados invalidos: Moto não encontrada");
     }
 
     return motorcycleDelete;

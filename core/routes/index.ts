@@ -6,8 +6,8 @@ import { Request, Response, NextFunction } from "express";
 
 const routes = Router();
 
-routes.use("/rentals", rental);
-routes.use("/motorcycles", motorcycles);
-routes.use("/deliverymens", deliverymenRoutes);
+routes.use("/locacao", rental);
+routes.use("/motos", motorcycles);
+routes.use("/entregadores", deliverymenRoutes);
 
 export { routes };

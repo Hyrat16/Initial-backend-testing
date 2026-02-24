@@ -21,7 +21,7 @@ export class DeliverymenController {
 
       */
       return res.status(201).json({
-        message: "O entregador foi criado",
+        message: "Cadastro criado",
         result: User,
       });
     } catch (error) {

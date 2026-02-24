@@ -14,7 +14,7 @@ export class MotorcycleController {
     next: NextFunction,
   ) {
     /* PT-BR
-      Operaçao responsável por retirar a mato a ser cadastrada no sistema da requisiçao.
+      Operaçao responsável por criar a moto a ser cadastrada no sistema da requisiçao.
       É necessário um user contendo:
       age: string;
       model: string;
@@ -71,7 +71,7 @@ export class MotorcycleController {
       const listAllMotorcycles = await motorcycleService.listMotorcycle();
 
       return res.status(200).json({
-        message: "Segue a lista de motos cadastradas",
+        message: "Lista de motos cadastradas",
         result: listAllMotorcycles,
       });
     } catch (error) {
@@ -100,7 +100,7 @@ export class MotorcycleController {
         await motorcycleService.SearchingForAMotorcycle(id);
 
       return res.status(200).json({
-        message: "Segue a lista de motos cadastradas",
+        message: "Detalhes da moto",
         result: serviceLocalizationMotoById,
       });
     } catch (error) {
@@ -134,7 +134,7 @@ export class MotorcycleController {
       );
       //console.log(loc);
       return res.status(200).json({
-        message: "A placa da moto foi modificada",
+        message: "A placa modificada com sucesso",
         result: serviceModifying,
       });
     } catch (error) {
@@ -161,8 +161,8 @@ export class MotorcycleController {
         await motorcycleService.deleteMotorcycleById(identifier);
       //const listAll = this.listingRegisteredMotorcycles;
       return res.status(200).json({
-        message: "O cadastrado da motocicleta foi excluido",
-        result: serviceDelete,
+        message: "O cadastro da motocicleta foi excluido",
+        //result: serviceDelete,
       });
     } catch (error) {
       if (error instanceof ErrorServidor) {
